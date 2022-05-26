@@ -5,7 +5,17 @@ Task to audit the contracts the following contracts:
 2. MockAccessControl: https://github.com/Quillhash/Audit_mocks/blob/main/MockAccessControl.sol
 
 ## Stack Tool
-solidity, truffle, ganache, mocha, chai, truffle-assertions, ethers.js, web3.js, slither, mythril
+* solidity
+* truffle
+* ganache
+* mocha
+* chai
+* truffle-assertions
+* ethers.js
+* web3.js
+* slither
+* mythril
+* remix
 
 ## MGGovToken Audit Report
 ### Bugs Found
@@ -50,7 +60,7 @@ solidity, truffle, ganache, mocha, chai, truffle-assertions, ethers.js, web3.js,
 * A contract can exploit the isContract function.
 
 ### TestSuite
-* The following tests were conducted using Truffle Suite:
+#### The following tests were conducted using Truffle Suite:
 1. contract should confirm that contract owner is equal to account 0
 2. contract should only allow users contribute amounts between 0.1 to 0.2 ether to the contract for 1 minute after every minute from the first minute of the hour
 3. contract should pwn users with contributions of 1 ether and above
