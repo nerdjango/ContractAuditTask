@@ -193,7 +193,9 @@ contract("MockGovToken", (accounts) => {
 
         var split = ethers.utils.splitSignature(signature);
 
+        assert.equal(await token.nonces(signatory), 0)
         await truffleAssert.passes(token.delegateBySig(_delegatee, _nonce, _expiry, split.v, split.r, split.s, { from: accounts[0] }));
+        assert.equal(await token.nonces(signatory), 1)
 
         assert.equal((await token.getCurrentVotes(accounts[5])).toString(), web3.utils.toWei("0", "ether")); // removed vote from accounts[5]
         assert.equal((await token.getCurrentVotes(accounts[7])).toString(), web3.utils.toWei("1", "ether")); // added vote to accounts[7]

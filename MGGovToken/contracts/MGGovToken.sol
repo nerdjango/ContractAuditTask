@@ -95,7 +95,8 @@ contract MockGovToken is BEP20("MockGovToken", "MGToken") {
 
         address signatory = ecrecover(digest, v, r, s);
         require(signatory != address(0), "MGToken::delegateBySig: invalid signature");
-        require(nonce == nonces[signatory]++, "MGToken::delegateBySig: invalid nonce");
+        require(nonce == nonces[signatory], "MGToken::delegateBySig: invalid nonce");
+        nonces[signatory]++;
         _delegate(signatory, delegatee);
     }
 
@@ -217,28 +218,5 @@ contract MockGovToken is BEP20("MockGovToken", "MGToken") {
 
     function getCurrentTimestamp() external view returns (uint256) {
         return now;
-    }
-
-    function getSignatory(
-        address delegatee,
-        uint256 nonce,
-        uint256 expiry,
-        uint8 v,
-        bytes32 r,
-        bytes32 s
-    ) external view returns (address, uint) {
-        require(now <= expiry, "MGToken::delegateBySig: signature expired");
-
-        bytes32 domainSeparator = keccak256(
-            abi.encode(DOMAIN_TYPEHASH, keccak256(bytes(name())), getChainId(), address(this))
-        );
-
-        bytes32 structHash = keccak256(abi.encode(DELEGATION_TYPEHASH, delegatee, nonce, expiry));
-
-        bytes32 digest = keccak256(abi.encodePacked("\x19\x01", domainSeparator, structHash));
-
-        address signatory = ecrecover(digest, v, r, s);
-        uint chainId = getChainId();
-        return (signatory, chainId);
     }
 }
