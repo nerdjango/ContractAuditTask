@@ -47,9 +47,10 @@ Task to audit the contracts the following contracts:
 
 ### Automated Testing Results from Slither
 #### MGGovToken.sol analysis before manual auditing
-/images/MGGovTokenBefore.png
+![MGGovToken Before](/images/MGGovTokenBefore.png)
+
 #### MGGovToken.sol analysis after manual auditing
-/images/MGGovTokenAfter.png
+![MGGovToken After](/images/MGGovTokenAfter.png)
 
 
 ## MockAccessControl Audit Report
@@ -75,5 +76,6 @@ Task to audit the contracts the following contracts:
 ### Automated Testing Results from Slither
 #### MockAccessControl.sol analysis before manual auditing
 /images/AccessControlBefore.png
+![AccessControl Before](/images/AccessControlBefore.png)
 #### MockAccessControl.sol analysis after manual auditing
-/images/AccessControlAfter.png
+![AccessControl After](/images/AccessControlAfter.png)
