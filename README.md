@@ -75,7 +75,6 @@ Task to audit the contracts the following contracts:
 
 ### Automated Testing Results from Slither
 #### MockAccessControl.sol analysis before manual auditing
-/images/AccessControlBefore.png
 ![AccessControl Before](/images/AccessControlBefore.png)
 #### MockAccessControl.sol analysis after manual auditing
 ![AccessControl After](/images/AccessControlAfter.png)
