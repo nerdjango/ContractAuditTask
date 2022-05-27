@@ -19,12 +19,14 @@ Task to audit the contracts the following contracts:
 
 ## MGGovToken Audit Report
 ### Bugs Found
+* 2 functions named mint performing different functions 
 * require(nonce == nonces[signatory]++, "MGToken::delegateBySig: invalid nonce"); this line is invalid
 * No check for signature expiry in delegateBySig()
 * No increment for account nonces in delegateBySig()
 * returns _delegate(signatory, delegatee); in delegateBySig()
 
 ### Recommendations
+* Renamed MGGovToken::mint to MGGovToken::mintTo
 * require(nonce == nonces[signatory], "MGToken::delegateBySig: invalid nonce");
 * Check signature validity, ie: require(now <= expiry, "MGToken::delegateBySig: signature expired")
 * increment nonce after the signatory is confirm i.e: nonces[signatory]++
@@ -43,7 +45,11 @@ Task to audit the contracts the following contracts:
 5. contract should allow users delegate by signature.
 6. contract should not allow users delegate by signature if signature is expired.
 
-### Automated Testing Results from Slither and Mythril
+### Automated Testing Results from Slither
+#### MGGovToken.sol analysis before manual auditing
+/images/MGGovTokenBefore.png
+#### MGGovToken.sol analysis after manual auditing
+/images/MGGovTokenAfter.png
 
 
 ## MockAccessControl Audit Report
@@ -66,4 +72,8 @@ Task to audit the contracts the following contracts:
 3. contract should pwn users with contributions of 1 ether and above
 4. should only allow contract owner to retrieve ETH from the contract
 
-### Automated Testing Results from Slither and Mythril
+### Automated Testing Results from Slither
+#### MockAccessControl.sol analysis before manual auditing
+/images/AccessControlBefore.png
+#### MockAccessControl.sol analysis after manual auditing
+/images/AccessControlAfter.png

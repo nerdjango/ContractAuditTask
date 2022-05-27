@@ -1,16 +1,16 @@
 //SPDX-License-Identifier: MIT
 pragma solidity 0.6.12;
 
-import "@pancakeswap/pancake-swap-lib/contracts/token/BEP20/BEP20.sol";
+import "../node_modules/@pancakeswap/pancake-swap-lib/contracts/token/BEP20/BEP20.sol";
 
 
 contract MockGovToken is BEP20("MockGovToken", "MGToken") {
-    function mintTo(address _to, uint256 _amount) public onlyOwner {
+    function mintTo(address _to, uint256 _amount) external onlyOwner {
         _mint(_to, _amount);
         _moveDelegates(address(0), _delegates[_to], _amount);
     }
 
-    function burn(address _from, uint256 _amount) public onlyOwner {
+    function burn(address _from, uint256 _amount) external onlyOwner {
         _burn(_from, _amount);
         _moveDelegates(_delegates[_from], address(0), _amount);
     }
